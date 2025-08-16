@@ -1,0 +1,912 @@
+/* ===============================
+   Fonts & Reset
+=============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===============================
+   Body Background (animated gradient)
+=============================== */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #ff9933, #ffffff, #138808, #ff6b35, #004225);
+    background-size: 400% 400%;
+    animation: gradientWave 12s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+@keyframes gradientWave {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#fireworks-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* ===============================
+    Animated Background Particles 
+ ===============================*/
+
+.bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bg-particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: floatUp 15s infinite linear;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* ===============================
+   Glass Container (main layout box)
+=============================== */
+
+.glass-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 1200px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ===============================
+   Header & Title Animation
+=============================== */
+
+.header {
+    text-align: center;
+    padding: 3rem 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ff9933, #ffffff, #138808);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleShine 3s ease-in-out infinite, titleFloat 4s ease-in-out infinite;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px rgba(255, 153, 51, 0.5);
+    position: relative;
+}
+
+.title::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #ff9933, #ffffff, #138808);
+    border-radius: 15px;
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0.3;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes titleShine {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #000080;
+    font-weight: 600;
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.8);
+    animation: fadeInScale 2s ease-out;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* ===============================
+   Flag Styles (saffron, white, green)
+   Includes animated Ashoka Chakra
+=============================== */
+
+.flag-container {
+    display: flex;
+    justify-content: center;
+    margin: 4rem 0;
+    perspective: 1000px;
+}
+
+.flag {
+    width: 400px;
+    height: 267px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: flag3D 8s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.flag:hover {
+    transform: scale(1.1) rotateY(15deg);
+}
+
+@keyframes flag3D {
+    0%, 100% { 
+        transform: rotateY(-5deg) rotateX(2deg);
+    }
+    25% { 
+        transform: rotateY(5deg) rotateX(-2deg);
+    }
+    50% { 
+        transform: rotateY(10deg) rotateX(3deg);
+    }
+    75% { 
+        transform: rotateY(-3deg) rotateX(-1deg);
+    }
+}
+
+.flag-stripe {
+    width: 100%;
+    height: 33.33%;
+    position: relative;
+    overflow: hidden;
+}
+
+.saffron {
+    background: linear-gradient(45deg, #ff9933, #ffb366, #ff9933);
+    background-size: 200% 200%;
+    animation: stripeWave 3s ease-in-out infinite, gradientMove 4s ease infinite;
+}
+
+.white {
+    background: linear-gradient(45deg, #ffffff, #f0f0f0, #ffffff);
+    background-size: 200% 200%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: stripeWave 3s ease-in-out infinite 0.3s, gradientMove 4s ease infinite;
+}
+
+.green {
+    background: linear-gradient(45deg, #138808, #2db84d, #138808);
+    background-size: 200% 200%;
+    animation: stripeWave 3s ease-in-out infinite 0.6s, gradientMove 4s ease infinite;
+}
+
+@keyframes stripeWave {
+    0%, 100% { 
+        transform: translateX(0) scaleX(1);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: translateX(5px) scaleX(1.02);
+        filter: brightness(1.1);
+    }
+}
+
+@keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ===============================
+     Enhanced Ashoka Chakra 
+/* ===============================*/
+.chakra {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    animation: chakraSpin 8s linear infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(0,0,128,0.3));
+}
+
+.chakra:hover {
+    transform: scale(1.15);
+    animation-duration: 2s;
+    filter: drop-shadow(0 0 20px rgba(0,0,128,0.5));
+}
+
+@keyframes chakraSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.chakra-outer {
+    width: 100%;
+    height: 100%;
+    border: 3px solid #000080;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: inset 0 0 15px rgba(0,0,128,0.2), 0 0 15px rgba(0,0,128,0.2);
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+
+.chakra-inner {
+    width: 75%;
+    height: 75%;
+    border: 2px solid #000080;
+    border-radius: 50%;
+    position: absolute;
+    top: 12.5%;
+    left: 12.5%;
+    background: radial-gradient(circle, rgba(0,0,128,0.05) 0%, transparent 100%);
+}
+
+.chakra-center {
+    width: 8px;
+    height: 8px;
+    background: #000080;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(0,0,128,0.5);
+}
+
+.chakra-spokes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+}
+
+
+.spoke {
+    position: absolute;
+    width: 2%;
+    height: 34%;
+    background: linear-gradient(to bottom, #000080, #4169E1);
+    left: 50%;
+    top: 8%;
+    transform-origin: 50% 135%;
+    border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+    .chakra {
+        width: 50px;
+        height: 50px;
+    }
+    .spoke {
+        height: 34%;
+        top: 8%;
+    }
+}
+
+@media (max-width: 480px) {
+    .chakra {
+        width: 40px;
+        height: 40px;
+    }
+    .spoke {
+        height: 34%;
+        top: 8%;
+    }
+}
+.spoke:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+.spoke:nth-child(2) { transform: translateX(-50%) rotate(15deg); }
+.spoke:nth-child(3) { transform: translateX(-50%) rotate(30deg); }
+.spoke:nth-child(4) { transform: translateX(-50%) rotate(45deg); }
+.spoke:nth-child(5) { transform: translateX(-50%) rotate(60deg); }
+.spoke:nth-child(6) { transform: translateX(-50%) rotate(75deg); }
+.spoke:nth-child(7) { transform: translateX(-50%) rotate(90deg); }
+.spoke:nth-child(8) { transform: translateX(-50%) rotate(105deg); }
+.spoke:nth-child(9) { transform: translateX(-50%) rotate(120deg); }
+.spoke:nth-child(10) { transform: translateX(-50%) rotate(135deg); }
+.spoke:nth-child(11) { transform: translateX(-50%) rotate(150deg); }
+.spoke:nth-child(12) { transform: translateX(-50%) rotate(165deg); }
+.spoke:nth-child(13) { transform: translateX(-50%) rotate(180deg); }
+.spoke:nth-child(14) { transform: translateX(-50%) rotate(195deg); }
+.spoke:nth-child(15) { transform: translateX(-50%) rotate(210deg); }
+.spoke:nth-child(16) { transform: translateX(-50%) rotate(225deg); }
+.spoke:nth-child(17) { transform: translateX(-50%) rotate(240deg); }
+.spoke:nth-child(18) { transform: translateX(-50%) rotate(255deg); }
+.spoke:nth-child(19) { transform: translateX(-50%) rotate(270deg); }
+.spoke:nth-child(20) { transform: translateX(-50%) rotate(285deg); }
+.spoke:nth-child(21) { transform: translateX(-50%) rotate(300deg); }
+.spoke:nth-child(22) { transform: translateX(-50%) rotate(315deg); }
+.spoke:nth-child(23) { transform: translateX(-50%) rotate(330deg); }
+.spoke:nth-child(24) { transform: translateX(-50%) rotate(345deg); }
+
+
+/* ===============================
+   Quote Section
+   With fade-in & author animation
+=============================== */
+
+.quote-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+}
+
+.quote {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    color: #000080;
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.8);
+    opacity: 0;
+    animation: quoteReveal 4s forwards;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    position: relative;
+    cursor: pointer;
+}
+
+.quote::before,
+.quote::after {
+    content: '"';
+    font-size: 4rem;
+    color: #ff9933;
+    position: absolute;
+    top: -20px;
+    opacity: 0.7;
+    animation: quoteMark 2s ease-in-out infinite;
+}
+
+.quote::before {
+    left: -40px;
+}
+
+.quote::after {
+    right: -40px;
+    transform: rotate(180deg);
+}
+
+@keyframes quoteMark {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+@keyframes quoteReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.author {
+    font-size: 1.4rem;
+    color: #138808;
+    font-weight: 600;
+    opacity: 0;
+    animation: authorFade 4s forwards 2s;
+    position: relative;
+}
+
+@keyframes authorFade {
+    to { opacity: 1; }
+}
+
+/* ===============================
+   Buttons (interactive section)
+=============================== */
+
+.interactive-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 4rem 0;
+    padding: 0 2rem;
+}
+
+.interactive-btn {
+    background: linear-gradient(135deg, #ff9933, #ffb366, #138808);
+    color: white;
+    border: none;
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+    transform: translateY(0);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.interactive-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.interactive-btn:hover::before {
+    left: 100%;
+}
+
+.interactive-btn:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+    background: linear-gradient(135deg, #138808, #2db84d, #ff9933);
+}
+
+.interactive-btn:active {
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* ===============================
+   Fireworks & Countdown Styles
+=============================== */
+
+.fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.firework {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 1;
+    pointer-events: none;
+    box-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
+    animation: fireworkRealistic 1.5s ease-out forwards;
+}
+
+@keyframes fireworkRealistic {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--dx), calc(var(--dy) + 80px)) scale(0.2);
+        opacity: 0;
+    }
+}
+
+
+/* ===============================
+     Enhanced Countdown 
+/* ===============================*/
+
+.countdown-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+}
+
+.countdown-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: #000080;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.8);
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.time-unit {
+    background: linear-gradient(135deg, rgba(255,153,51,0.1), rgba(19,136,8,0.1));
+    border: 3px solid transparent;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.time-unit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #ff9933, #138808);
+    border-radius: 20px;
+    z-index: -1;
+    padding: 3px;
+    mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+}
+
+.time-unit:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.time-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #000080;
+    display: block;
+    animation: numberPulse 2s ease-in-out infinite;
+}
+
+@keyframes numberPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.time-label {
+    font-size: 1rem;
+    color: #138808;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+}
+
+/* ===============================
+   Floating Action Buttons (FAB)
+   & Dark Mode Toggle
+=============================== */
+
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ff9933, #138808);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: fabFloat 3s ease-in-out infinite;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+
+
+@keyframes fabFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ===============================
+     Dark Mode Toggle Button 
+ ===============================*/
+
+.dark-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 110px; /* place beside the FAB */
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #333, #555);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: fabFloat 3s ease-in-out infinite;
+}
+
+.dark-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* ===============================
+     Dark theme styles 
+===============================*/
+
+body.dark {
+    background: linear-gradient(-45deg, #121212, #1a1a1a, #000000, #242424);
+    background-size: 400% 400%;
+    animation: gradientWave 12s ease infinite;
+    color: #f1f1f1;
+}
+
+body.dark .glass-container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark .title {
+    text-shadow: 0 0 30px rgba(255,255,255,0.4);
+}
+
+body.dark .subtitle,
+body.dark .quote,
+body.dark .author,
+body.dark .countdown-title,
+body.dark .time-number,
+body.dark .time-label,
+body.dark .footer {
+    color: #f1f1f1 !important;
+}
+
+body.dark .glass-container {
+    background: #1a1a1a;
+    border-radius: 20px;
+    box-shadow: 
+        8px 8px 16px #0e0e0e,  /* outer dark shadow */
+        -8px -8px 16px #2a2a2a, /* outer light shadow */
+        inset 2px 2px 4px rgba(0,0,0,0.6), /* inner shadow */
+        inset -2px -2px 4px rgba(255,255,255,0.1); /* inner light */
+}
+body.dark .title {
+    text-shadow:
+        0 0 10px rgba(255,153,51,0.6),   /* saffron glow */
+        0 0 20px rgba(19,136,8,0.5),    /* green glow */
+        0 0 30px rgba(255,255,255,0.4); /* white glow */
+}
+body.dark .fab,
+body.dark .dark-toggle {
+    transform: rotateX(10deg) rotateY(10deg);
+    box-shadow: 
+        5px 5px 15px rgba(0,0,0,0.6),
+        -3px -3px 10px rgba(255,255,255,0.05);
+}
+body.dark .countdown-card {
+    border: 1px solid transparent;
+    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+                linear-gradient(135deg, #ff9933, #ffffff, #138808) border-box;
+    border-radius: 16px;
+}
+body.dark .patriotic-icon {
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.7));
+}
+
+body.light .glass-container {
+    background: rgba(255,255,255,0.7);
+    border-radius: 20px;
+    box-shadow: 
+        8px 8px 16px rgba(0,0,0,0.15),   /* darker shadow below */
+        -4px -4px 8px rgba(255,255,255,0.7); /* highlight above */
+}
+body.light .fab,
+body.light .dark-toggle {
+    background: #f0f0f0;
+    box-shadow: 
+        6px 6px 12px rgba(0,0,0,0.15),
+        -6px -6px 12px rgba(255,255,255,0.9);
+}
+body.light .countdown-card {
+    background: #ffffff;
+    box-shadow: inset 2px 2px 6px rgba(0,0,0,0.1),
+                inset -2px -2px 6px rgba(255,255,255,0.6);
+}
+
+body.light .countdown-card {
+    border: 1px solid transparent;
+    background: linear-gradient(#ffffff, #ffffff) padding-box,
+                linear-gradient(145deg, #d1d1d1, #ffffff) border-box;
+    border-radius: 16px;
+}
+
+body.light .title {
+    text-shadow: 
+        2px 2px 4px rgba(0,0,0,0.15),
+        -1px -1px 2px rgba(255,255,255,0.6);
+}
+
+/* ===============================
+   Footer
+=============================== */
+
+.footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    color: #000080;
+    font-weight: 700;
+    font-size: 1.4rem;
+    position: relative;
+}
+
+.footer-text {
+    animation: footerGlow 3s ease-in-out infinite;
+}
+
+@keyframes footerGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(255,153,51,0.5); }
+    50% { text-shadow: 0 0 20px rgba(19,136,8,0.7); }
+}
+
+/* ===============================
+    Responsive Enhancements
+=============================== */
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .quote {
+        font-size: 1.6rem;
+    }
+
+    .flag {
+        width: 300px;
+        height: 200px;
+    }
+
+    .chakra {
+        width: 50px;
+        height: 50px;
+    }
+
+    .interactive-btn {
+        width: 250px;
+        padding: 1.2rem 2rem;
+    }
+
+    .time-unit {
+        min-width: 100px;
+        padding: 1.5rem 1rem;
+    }
+
+    .time-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .quote {
+        font-size: 1.3rem;
+        padding: 0 1rem;
+    }
+
+    .flag {
+        width: 250px;
+        height: 167px;
+    }
+
+    .chakra {
+        width: 40px;
+        height: 40px;
+    }
+
+    .countdown-timer {
+        gap: 1rem;
+    }
+
+    .time-unit {
+        min-width: 80px;
+        padding: 1rem 0.8rem;
+    }
+}
+
+/* ===============================
+   Music Bars Visualization
+=============================== */
+
+.music-bars {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    display: flex;
+    align-items: end;
+    gap: 3px;
+    z-index: 1000;
+}
+
+.music-bar {
+    width: 4px;
+    background: linear-gradient(to top, #ff9933, #138808);
+    border-radius: 2px;
+    animation: musicPulse 1s ease-in-out infinite;
+}
+
+.music-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+.music-bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+.music-bar:nth-child(3) { height: 25px; animation-delay: 0.2s; }
+.music-bar:nth-child(4) { height: 35px; animation-delay: 0.3s; }
+.music-bar:nth-child(5) { height: 28px; animation-delay: 0.4s; }
+
+@keyframes musicPulse {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.3); }
+}
