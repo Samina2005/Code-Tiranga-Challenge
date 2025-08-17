@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freedom Day - Interactive Independence Day Celebration</title>
+    <link rel="stylesheet" href="styles.css"> 
+
+</head>
+<body>
+    <!-- Background Particles & Fireworks Layer -->
+    <div class="bg-particles" id="bgParticles"></div>
+    <div class="fireworks-container" id="fireworks"></div>
+
+
+    <!-- Glassmorphic Container -->
+    <div class="glass-container">
+
+        <!-- Page Header -->
+        <header class="header">
+            <h1 class="title">🇮🇳 FREEDOM DAY 🇮🇳</h1>
+            <p class="subtitle">Celebrating India's Glorious Independence</p>
+        </header>
+
+        <!-- 3D Animated Tricolor Flag -->
+        <div class="flag-container">
+            <div class="flag" onclick="flagClick()">
+                <div class="flag-stripe saffron"></div>
+                <div class="flag-stripe white">
+
+                    <!-- Ashoka Chakra -->
+                    <div class="chakra" onclick="chakraClick(event)">
+                        <div class="chakra-outer"></div>
+                        <div class="chakra-inner"></div>
+                        <div class="chakra-center"></div>
+
+                        <!-- Chakra Spokes -->
+                        <div class="chakra-spokes">
+                            
+                            <!-- 24 spokes -->
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flag-stripe green"></div>
+            </div>
+        </div>
+
+        <!-- Quote Section -->
+        <section class="quote-section">
+            <blockquote class="quote" onclick="changeQuote()">
+                "Freedom is never dear at any price. It is the breath of life. What would a man not pay for living?"
+            </blockquote>
+            <cite class="author">- Mahatma Gandhi</cite>
+        </section>
+
+        <!-- Interactive Buttons -->
+        <div class="interactive-section">
+            <button class="interactive-btn" onclick="launchFireworks()">🎆 Launch Mega Fireworks</button>
+            <button class="interactive-btn" onclick="createParticleStorm()">✨ Tricolor Storm</button>
+            <button class="interactive-btn" onclick="playAnthem()">🎵 Play Anthem</button>
+        </div>
+
+        <!-- Countdown Timer -->
+        <section class="countdown-section">
+            <h2 class="countdown-title">Time Since Independence Day 2025</h2>
+            <div class="countdown-timer" id="countdown">
+                <div class="time-unit" onclick="animateUnit(this)">
+                    <span class="time-number" id="days">0</span>
+                    <span class="time-label">Days</span>
+                </div>
+                <div class="time-unit" onclick="animateUnit(this)">
+                    <span class="time-number" id="hours">0</span>
+                    <span class="time-label">Hours</span>
+                </div>
+                <div class="time-unit" onclick="animateUnit(this)">
+                    <span class="time-number" id="minutes">0</span>
+                    <span class="time-label">Minutes</span>
+                </div>
+                <div class="time-unit" onclick="animateUnit(this)">
+                    <span class="time-number" id="seconds">0</span>
+                    <span class="time-label">Seconds</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <button class="fab" onclick="surpriseEffect()" title="Surprise!">✨</button>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">🌙</button>
+    <button class="freedom-fighters-btn" onclick="showFreedomFighters()" title="Freedom Fighters">👥</button>
+
+    <!-- Freedom Fighter Modal -->
+    <div class="freedom-fighter-modal" id="fighterModal">
+        <div class="freedom-fighter-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Heroes of Indian Freedom</h2>
+                <button class="close-btn" onclick="closeFreedomFighters()">×</button>
+            </div>
+            <div class="fighters-grid">
+                <div class="fighter-card">
+                    <img src="https://im.hunt.in/cg/iol/About/Personalities/Freedom-Fighters/Mahatma-Gandhi.jpg" alt="Mahatma Gandhi" class="fighter-image">
+                    <h3 class="fighter-name">Mahatma Gandhi</h3>
+                    <p class="fighter-years">(1869 - 1948)</p>
+                    <p class="fighter-description">The Father of the Nation, Mohandas Karamchand Gandhi led India's independence movement through non-violent civil disobedience. His principles of Satyagraha and Ahimsa inspired freedom movements worldwide. He organized major campaigns like the Salt March and Quit India Movement, proving that freedom could be won without violence.</p>
+                </div>
+                
+                <div class="fighter-card">
+                    <img src="https://cdn.dollsofindia.com/images/p/people-posters/subhash-bose-GA65_l.jpg" alt="Netaji Subhas Chandra Bose" class="fighter-image">
+                    <h3 class="fighter-name">Netaji Subhas Chandra Bose</h3>
+                    <p class="fighter-years">(1897 - 1945)</p>
+                    <p class="fighter-description">A charismatic leader who believed in armed resistance against British rule. He formed the Indian National Army (INA) and gave the famous slogan "Give me blood, and I shall give you freedom!" His approach differed from Gandhi's non-violence, but his dedication to India's freedom was unwavering.</p>
+                </div>
+                
+                <div class="fighter-card">
+                    <img src="data:image/jpeg;base64,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" alt="Bhagat Singh" class="fighter-image">
+                    <h3 class="fighter-name">Bhagat Singh</h3>
+                    <p class="fighter-years">(1907 - 1931)</p>
+                    <p class="fighter-description">A revolutionary socialist who became a folk hero for his fearless fight against British rule. At just 23, he was executed for his revolutionary activities. His famous words "Inquilab Zindabad" (Long Live Revolution) continue to inspire generations. He believed that sacrifice was necessary for freedom.</p>
+                </div>
+                
+                <div class="fighter-card">
+                    <img src='https://gosharpener.com/content/uploads/photos/2024/08/sngine_8dc15c514fb8c708e998e38b0abdf14a.jpg' alt="Sardar Vallabhbhai Patel" class="fighter-image">
+                    <h3 class="fighter-name">Sardar Vallabhbhai Patel</h3>
+                    <p class="fighter-years">(1875 - 1950)</p>
+                    <p class="fighter-description">Known as the "Iron Man of India," he played a crucial role in India's independence movement and later became the first Deputy Prime Minister. He successfully integrated over 500 princely states into the Indian Union, earning him the title "Architect of Modern India."</p>
+                </div>
+                
+                <div class="fighter-card">
+                    <img src="https://c.ndtvimg.com/2020-06/fhoqe9r8_rani-jhansi-650_625x300_18_June_20.jpg" alt="Rani Lakshmibai" class="fighter-image">
+                    <h3 class="fighter-name">Rani Lakshmibai</h3>
+                    <p class="fighter-years">(1828 - 1858)</p>
+                    <p class="fighter-description">The brave Queen of Jhansi who fought valiantly against British rule during the Indian Rebellion of 1857. She led her troops from the front and died fighting for her motherland. Her courage and sacrifice made her an icon of resistance and women's empowerment in Indian history.</p>
+                </div>
+                
+                <div class="fighter-card">
+                    <img src="https://res.cloudinary.com/dkplc2mbj/image/upload/v1612161327/jawahar_lal_nehru_843f597724.jpg" alt="Jawaharlal Nehru" class="fighter-image">
+                    <h3 class="fighter-name">Jawaharlal Nehru</h3>
+                    <p class="fighter-years">(1889 - 1964)</p>
+                    <p class="fighter-description">India's first Prime Minister and a key figure in the independence movement. Known as "Pandit Nehru," he worked closely with Gandhi and played a vital role in shaping modern India. His vision of a secular, democratic, and socialist India became the foundation of the nation's development.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Bars Visualization -->
+    <div class="music-bars" id="musicBars">
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+    </div>
+
+    <!-- National Anthem Audio -->
+    <audio id="anthem" preload="auto">
+        <source src='national anthem.mp3' type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">🎉 JAI HIND! JAI BHARAT! 🎉</p>
+        <p style="font-size: 1rem; margin-top: 1rem; opacity: 0.8;">Made with ❤️ for Code Tiranga Challenge</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
